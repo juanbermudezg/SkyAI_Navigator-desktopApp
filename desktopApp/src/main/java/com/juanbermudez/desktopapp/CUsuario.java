@@ -70,7 +70,7 @@ public class CUsuario {
         String password = passwordField.getText();
         String email = emailField.getText();
         boolean entrar = true;
-        String regexEmail = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
+        String regexEmail = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,5})+$";
 
         // Verificar longitud del nombre de usuario
         if (username.length() < 6) {

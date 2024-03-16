@@ -13,6 +13,7 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -206,10 +207,11 @@ public class Sign_up extends javax.swing.JFrame {
             objectoUsuario.insetarUsuario(txtUser, txtPass, txtEmail);
         }
         else {
+            JOptionPane.showMessageDialog(null, "Error, por favor verifique los datos guardados.");
+        }
         txtUser.setText("");
         txtPass.setText("");
         txtEmail.setText("");
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void pintarLogo(JLabel lbl, String path){
