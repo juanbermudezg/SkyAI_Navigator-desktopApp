@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -129,5 +130,50 @@ public class CRUDOperation {
             objectoConexion.cerrarConexion();
         }
         return tUsuario;
+    }
+
+    public boolean insetarUsuarioAdmin(JTextField txtName, JTextField txtLastName, JTextField txtUsername, JPasswordField txtPass, JTextField txtEmail, Object selectedItem) {
+        Validacion validacionObj = new Validacion();
+        boolean bandera = validacionObj.validacionesUsuario(txtUsername, txtPass, txtEmail);
+        if (bandera){
+            Usuario userObj = new Usuario();
+            userObj.setName(txtName.getText());
+            userObj.setLastName(txtLastName.getText());
+            userObj.setUsername(txtUsername.getText());
+            userObj.setPassword(txtPass.getText());
+            userObj.setEmail(txtEmail.getText());
+            userObj.setTipo_usuario((String) selectedItem);
+            Conexion objectoConexion = new Conexion();
+            String consulta = "insert into Users(name, lastName, username, password, email, tipo_usuario) values (?, ?, ?, ?, ?, ?);";
+            try{
+                CallableStatement cs = objectoConexion.estableceConexion().prepareCall(consulta);
+                cs.setString(1, userObj.getName());
+                cs.setString(2, userObj.getLastName());
+                cs.setString(3, userObj.getUsername());
+                cs.setString(4, userObj.getPassword());
+                cs.setString(5, userObj.getEmail());
+                cs.setString(6, userObj.getTipo_usuario());
+                cs.execute();
+                cs.close();
+                JOptionPane.showMessageDialog(null, "Se insertó correctamente el usuario");
+                return true;
+            }
+            catch (SQLIntegrityConstraintViolationException e){
+                JOptionPane.showMessageDialog(null, "Nombre de usuario ya existe.");
+                return false;
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, "No se insertó correctamente el usuario, error: " + e.toString());
+                return false;
+            }
+            finally {
+                objectoConexion.cerrarConexion();
+                
+            }
+         }
+        else {
+            JOptionPane.showMessageDialog(null, "Error, por favor verifique los datos guardados.");
+            return false;
+        }
     }
 }

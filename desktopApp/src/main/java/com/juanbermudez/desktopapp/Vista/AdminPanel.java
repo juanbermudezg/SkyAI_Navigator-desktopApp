@@ -12,7 +12,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 /**
  * @author juanb
  */
@@ -25,6 +24,7 @@ public class AdminPanel extends javax.swing.JFrame{
     public AdminPanel(Usuario usr) {
         initComponents();
         this.usr = usr;
+        this.usr.setTipo_usuario("admin");
         mostrarDatosUsuarios();
         this.setLocationRelativeTo(this);
         this.pintarLogo(this.lblLogo, "logo.png");
@@ -80,17 +80,22 @@ public class AdminPanel extends javax.swing.JFrame{
         jPanel2 = new jPanelTrasnparente();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabUsers = new javax.swing.JTable();
-        txtNameUsr = new javax.swing.JTextField();
         btnEditarUsr = new javax.swing.JButton();
         btnCrearUsr = new javax.swing.JButton();
         btnRecargarTbl = new javax.swing.JButton();
         btnBorrarUsr = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -105,16 +110,6 @@ public class AdminPanel extends javax.swing.JFrame{
             }
         ));
         jScrollPane1.setViewportView(tabUsers);
-
-        txtNameUsr.setEditable(false);
-        txtNameUsr.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        txtNameUsr.setForeground(new java.awt.Color(255, 255, 255));
-        txtNameUsr.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtNameUsr.setText("jTextField1");
-        txtNameUsr.setToolTipText("");
-        txtNameUsr.setCaretColor(new java.awt.Color(60, 63, 65));
-        txtNameUsr.setEnabled(false);
-        txtNameUsr.setSelectedTextColor(new java.awt.Color(0, 0, 0));
 
         btnEditarUsr.setBackground(new java.awt.Color(255, 215, 0));
         btnEditarUsr.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -166,11 +161,19 @@ public class AdminPanel extends javax.swing.JFrame{
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("CRUD - Panel Admin: ");
-        jLabel1.setToolTipText("");
+        txtUsername.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtUsername.setText("test");
+        txtUsername.setToolTipText("");
+        txtUsername.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("CRUD - Panel Admin: ");
+        jLabel2.setToolTipText("");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,12 +181,7 @@ public class AdminPanel extends javax.swing.JFrame{
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNameUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -198,14 +196,20 @@ public class AdminPanel extends javax.swing.JFrame{
                         .addGap(37, 37, 37)
                         .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(36, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNameUsr, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -264,7 +268,11 @@ public class AdminPanel extends javax.swing.JFrame{
     }//GEN-LAST:event_btnEditarUsrActionPerformed
 
     private void btnCrearUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsrActionPerformed
-        // TODO add your handling code here:
+        AggUsr aggObj = new AggUsr(this.usr);
+        aggObj.setVisible(true);
+        aggObj.setLocationRelativeTo(null);
+        this.dispose();
+        
     }//GEN-LAST:event_btnCrearUsrActionPerformed
 
     private void btnRecargarTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarTblActionPerformed
@@ -278,6 +286,11 @@ public class AdminPanel extends javax.swing.JFrame{
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       this.txtUsername.setText(usr.getUsername());
+       mostrarDatosUsuarios();
+    }//GEN-LAST:event_formWindowOpened
     
     private void pintarLogo(JLabel lbl, String path){
         this.imagen = new ImageIcon(path);
@@ -291,14 +304,8 @@ public class AdminPanel extends javax.swing.JFrame{
         lbl.setIcon(this.icono);
         this.repaint();
     }
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {
-        
-        this.txtNameUsr.setText(usr.getUsername());
-        //cargarTabla();
-    }  
-    /**
-     * @param args the command line arguments
-     */
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarUsr;
@@ -306,12 +313,12 @@ public class AdminPanel extends javax.swing.JFrame{
     private javax.swing.JButton btnEditarUsr;
     private javax.swing.JButton btnRecargarTbl;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JTable tabUsers;
-    private javax.swing.JTextField txtNameUsr;
+    private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables
 }
