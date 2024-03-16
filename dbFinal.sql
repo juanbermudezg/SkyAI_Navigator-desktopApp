@@ -1,18 +1,19 @@
 create database SKYAI_DB;
 use SKYAI_DB;
+
 CREATE TABLE Users (
 	`id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(100),
-    `lastName` varchar(100),
-  `username` varchar(25) NOT NULL UNIQUE,
-  `password` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
+    `name` varchar(100) CHARACTER SET latin1,
+    `lastName` varchar(100) CHARACTER SET latin1,
+  `username` varchar(25) CHARACTER SET latin1 NOT NULL UNIQUE ,
+  `password` varchar(30) CHARACTER SET latin1 NOT NULL ,
+  `email` varchar(50) CHARACTER SET latin1 NOT NULL  ,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vuelo` varchar(7),
  `tipo_usuario` ENUM('normal', 'admin'),
   KEY `vuelo` (`vuelo`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`vuelo`) REFERENCES Fligth (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ;
 CREATE TABLE Fligth (
   `id` varchar(10) NOT NULL,
   `fromCity` char(25) NOT NULL,

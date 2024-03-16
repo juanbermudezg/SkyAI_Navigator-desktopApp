@@ -1,7 +1,7 @@
 package com.juanbermudez.desktopapp.Vista;
 
-import com.juanbermudez.desktopapp.Controlador.Enlaces;
-import com.juanbermudez.desktopapp.Modelo.CUsuario;
+import com.juanbermudez.desktopapp.Controlador.CRUDOperation;
+import com.juanbermudez.desktopapp.Controlador.Enlace;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -11,7 +11,6 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -212,23 +211,18 @@ public class Sign_up extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btmSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSignInActionPerformed
-        Enlaces enl = new Enlaces();
+        Enlace enl = new Enlace();
         enl.fromUp2In();
         dispose();
     }//GEN-LAST:event_btmSignInActionPerformed
 
     private void btmSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSignUpActionPerformed
-        
-        CUsuario objectoUsuario = new CUsuario();
-        boolean bandera = objectoUsuario.validaciones(txtUser, txtPass, txtEmail);
-        if (bandera == true){
-            objectoUsuario.insetarUsuario(txtUser, txtPass, txtEmail);
-            Enlaces enl = new Enlaces();
+        CRUDOperation CRUDObject = new CRUDOperation();
+        boolean bandera = CRUDObject.insetarUsuario(txtUser, txtPass, txtEmail);
+        if (bandera){
+            Enlace enl = new Enlace();
             enl.fromUp2In();
             dispose();
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Error, por favor verifique los datos guardados.");
         }
         txtUser.setText("");
         txtPass.setText("");

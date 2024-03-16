@@ -4,8 +4,9 @@
  */
 package com.juanbermudez.desktopapp.Vista;
 
-import com.juanbermudez.desktopapp.Controlador.Enlaces;
-import com.juanbermudez.desktopapp.Modelo.CUsuario;
+import com.juanbermudez.desktopapp.Controlador.CRUDOperation;
+import com.juanbermudez.desktopapp.Controlador.Enlace;
+import com.juanbermudez.desktopapp.Modelo.Usuario;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -138,10 +139,6 @@ public class Sign_in extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -158,6 +155,10 @@ public class Sign_in extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btmExit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(40, Short.MAX_VALUE)
@@ -227,8 +228,8 @@ public class Sign_in extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btmEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmEntryActionPerformed
-        CUsuario usuario = new CUsuario();
-        boolean bandera = usuario.buscarUsuario(txtUser, txtPass);
+        CRUDOperation CRUDObject = new CRUDOperation();
+        boolean bandera = CRUDObject.buscarUsuario(txtUser, txtPass);
         if (bandera){
             dispose();
         }
@@ -236,7 +237,7 @@ public class Sign_in extends javax.swing.JFrame {
     }//GEN-LAST:event_btmEntryActionPerformed
 
     private void btmSign_up_v2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSign_up_v2ActionPerformed
-        Enlaces enl = new Enlaces();
+        Enlace enl = new Enlace();
         enl.fromIn2Up();
         dispose();
     }//GEN-LAST:event_btmSign_up_v2ActionPerformed
