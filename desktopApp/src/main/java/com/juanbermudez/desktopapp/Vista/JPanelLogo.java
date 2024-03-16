@@ -1,4 +1,4 @@
-package com.juanbermudez.desktopapp;
+package com.juanbermudez.desktopapp.Vista;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;

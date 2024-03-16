@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package com.juanbermudez.desktopapp;
+package com.juanbermudez.desktopapp.Vista;
 
+import com.juanbermudez.desktopapp.Controlador.Enlaces;
+import com.juanbermudez.desktopapp.Modelo.CUsuario;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -17,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- *
  * @author juanb
  */
 public class Sign_up extends javax.swing.JFrame {
@@ -67,11 +64,12 @@ public class Sign_up extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btmSignIn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
+        btmSignUp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,13 +84,13 @@ public class Sign_up extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro");
 
-        jButton1.setBackground(new java.awt.Color(255, 215, 0));
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("¡Registrarme!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btmSignIn.setBackground(new java.awt.Color(255, 215, 0));
+        btmSignIn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btmSignIn.setForeground(new java.awt.Color(0, 0, 0));
+        btmSignIn.setText("¿Ya tienes cuenta?");
+        btmSignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btmSignInActionPerformed(evt);
             }
         });
 
@@ -111,6 +109,16 @@ public class Sign_up extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Correo electrónico:");
 
+        btmSignUp.setBackground(new java.awt.Color(255, 215, 0));
+        btmSignUp.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btmSignUp.setForeground(new java.awt.Color(0, 0, 0));
+        btmSignUp.setText("¡Registrarme!");
+        btmSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmSignUpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -126,11 +134,12 @@ public class Sign_up extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(btmSignIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPass))
+                    .addComponent(txtPass)
+                    .addComponent(btmSignUp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -158,9 +167,11 @@ public class Sign_up extends javax.swing.JFrame {
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(btmSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(btmSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(310, 310, 310)
@@ -200,11 +211,21 @@ public class Sign_up extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btmSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSignInActionPerformed
+        Enlaces enl = new Enlaces();
+        enl.fromUp2In();
+        dispose();
+    }//GEN-LAST:event_btmSignInActionPerformed
+
+    private void btmSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSignUpActionPerformed
+        
         CUsuario objectoUsuario = new CUsuario();
-        boolean bandera = objectoUsuario.Validaciones(txtEmail, txtEmail, txtEmail);
+        boolean bandera = objectoUsuario.validaciones(txtUser, txtPass, txtEmail);
         if (bandera == true){
             objectoUsuario.insetarUsuario(txtUser, txtPass, txtEmail);
+            Enlaces enl = new Enlaces();
+            enl.fromUp2In();
+            dispose();
         }
         else {
             JOptionPane.showMessageDialog(null, "Error, por favor verifique los datos guardados.");
@@ -212,7 +233,8 @@ public class Sign_up extends javax.swing.JFrame {
         txtUser.setText("");
         txtPass.setText("");
         txtEmail.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btmSignUpActionPerformed
     
     private void pintarLogo(JLabel lbl, String path){
         this.imagen = new ImageIcon(path);
@@ -232,7 +254,8 @@ public class Sign_up extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btmSignIn;
+    private javax.swing.JButton btmSignUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
